@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "author": "Felipe Livino / Henrique",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": -124.8,
+      "left": -129.56,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -297.3,
+      "left": -15,
+      "attrs": { "temperature": "36.5", "humidity": "85.5" }
+    },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -231.7, "left": 120, "attrs": {} },
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": -50, "left": 130, "attrs": {} },
+    {
+      "type": "wokwi-text",
+      "id": "text1",
+      "top": -259.2,
+      "left": 110,
+      "attrs": { "text": "Batimentos (BPM)" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text3",
+      "top": -336,
+      "left": -38.4,
+      "attrs": { "text": "Temperatura Corpórea" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text4",
+      "top": -80,
+      "left": 120,
+      "attrs": { "text": "Rede Wi-Fi (ON/OFF)" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:GND", "esp:GND.2", "black", [ "v19.2", "v67.2" ] ],
+    [ "dht1:VCC", "esp:5V", "red", [ "v9.6", "h-230.4", "v211.2" ] ],
+    [ "dht1:SDA", "esp:19", "gold", [ "v0" ] ],
+    [ "pot1:VCC", "esp:3V3", "red", [ "h-0.8", "v28.8", "h-249.75" ] ],
+    [ "pot1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "esp:35", "pot1:SIG", "green", [ "h-57.45", "v-105.6", "h330" ] ],
+    [ "sw1:1", "esp:GND.2", "black", [ "v20", "h-69.3", "v-100" ] ],
+    [ "sw1:2", "esp:12", "blue", [ "v40", "h-220", "v-90" ] ]
+  ],
+  "dependencies": {}
+}

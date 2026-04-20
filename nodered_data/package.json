@@ -1,0 +1,9 @@
+{
+  "name": "nodered-project",
+  "version": "1.0.0",
+  "description": "CardioIA Node-RED",
+  "dependencies": {
+    "@node-red/node-red-dashboard": "^3.6.5",
+    "node-red-contrib-prometheus": "^2.1.0"
+  }
+}
