@@ -1,286 +1,344 @@
 [
-    {
-        "id": "e814d485f7a2db0c",
-        "type": "tab",
-        "label": "CardioIA - Fase 3",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "cd0ab8c9b360f2d9",
-        "type": "mqtt in",
-        "z": "e814d485f7a2db0c",
-        "name": "Recebimento CardioIA (HiveMQ)",
-        "topic": "fiap/cardioia/henrique/paciente_01",
-        "qos": "0",
-        "datatype": "auto-detect",
-        "broker": "c3e981251fc434a3",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 250,
-        "y": 140,
-        "wires": [
-            [
-                "61ff61d4bd1ec3db"
-            ]
-        ]
-    },
-    {
-        "id": "61ff61d4bd1ec3db",
-        "type": "json",
-        "z": "e814d485f7a2db0c",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 490,
-        "y": 140,
-        "wires": [
-            [
-                "2b6359ebed2cc8df",
-                "5d0c83a54a01c4f5",
-                "93bc14ad5dbb6e40",
-                "9e97cd2b17a1dfa0"
-            ]
-        ]
-    },
-    {
-        "id": "2b6359ebed2cc8df",
-        "type": "function",
-        "z": "e814d485f7a2db0c",
-        "name": "Extrair Temperatura",
-        "func": "msg.payload = msg.payload.temperatura;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 750,
-        "y": 80,
-        "wires": [
-            [
-                "15ec2352da6f0144",
-                "7cd7c980f8b1c518",
-                "125b2a2e4a64356e"
-            ]
-        ]
-    },
-    {
-        "id": "5d0c83a54a01c4f5",
-        "type": "function",
-        "z": "e814d485f7a2db0c",
-        "name": "Extrair BPM",
-        "func": "msg.payload = msg.payload.bpm;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 730,
-        "y": 140,
-        "wires": [
-            [
-                "15ec2352da6f0144",
-                "125b2a2e4a64356e"
-            ]
-        ]
-    },
-    {
-        "id": "15ec2352da6f0144",
-        "type": "ui_chart",
-        "z": "e814d485f7a2db0c",
-        "name": "Evolução Sinais Vitais",
-        "group": "5285741b0b75a1c1",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "label": "Evolução Sinais Vitais (Temp e BPM)",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "0",
-        "ymax": "200",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 1000,
-        "y": 100,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "7cd7c980f8b1c518",
-        "type": "ui_gauge",
-        "z": "e814d485f7a2db0c",
-        "name": "Gauge Temperatura",
-        "group": "5285741b0b75a1c1",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Temperatura °C",
-        "label": "°C",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "50",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "35",
-        "seg2": "38",
-        "className": "",
-        "x": 1000,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "93bc14ad5dbb6e40",
-        "type": "function",
-        "z": "e814d485f7a2db0c",
-        "name": "Análise de Risco (Alertas)",
-        "func": "let bpm = msg.payload.bpm;\nlet temp = msg.payload.temperatura;\n\nlet msgAlerta = \"Paciente Estável\";\nlet color = \"green\";\n\nif(bpm > 120 || temp > 38.0) {\n    msgAlerta = \"ALERTA: Sinais Vitais Críticos! (BPM: \" + bpm + \" / Temp: \" + temp + \")\";\n    color = \"red\";\n}\n\nmsg.payload = msgAlerta;\nmsg.color = color;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 770,
-        "y": 200,
-        "wires": [
-            [
-                "6bc7185aab64aeb8"
-            ]
-        ]
-    },
-    {
-        "id": "6bc7185aab64aeb8",
-        "type": "ui_text",
-        "z": "e814d485f7a2db0c",
-        "group": "5285741b0b75a1c1",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "name": "Status Alerta",
-        "label": "Status do Paciente:",
-        "format": "<font color=\"{{msg.color}}\">{{msg.payload}}</font>",
-        "layout": "row-spread",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 970,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "9e97cd2b17a1dfa0",
-        "type": "debug",
-        "z": "e814d485f7a2db0c",
-        "name": "Debug Output",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 740,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "125b2a2e4a64356e",
-        "type": "prometheus-out",
-        "z": "e814d485f7a2db0c",
-        "name": "Exportar p/ Grafana",
-        "metricType": "gauge",
-        "metricName": "cardioia_sinais_vitais",
-        "metricHelp": "Sinais vitais do CardioIA ESP32",
-        "metricLabels": "{}",
-        "x": 1000,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "c3e981251fc434a3",
-        "type": "mqtt-broker",
-        "name": "HiveMQ Public",
-        "broker": "broker.hivemq.com",
-        "port": "1883",
-        "clientid": "Node-RED-CardioIA-Grafana",
-        "autoConnect": true,
-        "usetls": false,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "autoUnsubscribe": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthRetain": "false",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closeRetain": "false",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willRetain": "false",
-        "willPayload": "",
-        "willMsg": {},
-        "userProps": "",
-        "sessionExpiry": ""
-    },
-    {
-        "id": "5285741b0b75a1c1",
-        "type": "ui_group",
-        "name": "Monitoramento em Tempo Real",
-        "tab": "9ae1bfe26301389c",
-        "order": 1,
-        "disp": true,
-        "width": "12",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "9ae1bfe26301389c",
-        "type": "ui_tab",
-        "name": "CardioIA Dashboard",
-        "icon": "dashboard",
-        "order": 1,
-        "disabled": false,
-        "hidden": false
-    }
+  {
+    "id": "e814d485f7a2db0c",
+    "type": "tab",
+    "label": "CardioIA - Fase 3",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "cd0ab8c9b360f2d9",
+    "type": "mqtt in",
+    "z": "e814d485f7a2db0c",
+    "name": "Recebimento CardioIA (HiveMQ)",
+    "topic": "fiap/cardioia/felipe/paciente_01",
+    "qos": "0",
+    "datatype": "auto-detect",
+    "broker": "c3e981251fc434a3",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 250,
+    "y": 140,
+    "wires": [
+      [
+        "2b6359ebed2cc8df",
+        "5d0c83a54a01c4f5",
+        "93bc14ad5dbb6e40",
+        "9e97cd2b17a1dfa0"
+      ]
+    ]
+  },
+  {
+    "id": "61ff61d4bd1ec3db",
+    "type": "json",
+    "z": "e814d485f7a2db0c",
+    "name": "",
+    "property": "payload",
+    "action": "obj",
+    "pretty": false,
+    "x": 490,
+    "y": 140,
+    "wires": [
+      [
+        "2b6359ebed2cc8df",
+        "5d0c83a54a01c4f5",
+        "93bc14ad5dbb6e40",
+        "9e97cd2b17a1dfa0"
+      ]
+    ]
+  },
+  {
+    "id": "2b6359ebed2cc8df",
+    "type": "function",
+    "z": "e814d485f7a2db0c",
+    "name": "Extrair Temperatura",
+    "func": "let p = typeof msg.payload === 'string' ? JSON.parse(msg.payload) : msg.payload;\nmsg.payload = p.temperatura;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 750,
+    "y": 80,
+    "wires": [
+      [
+        "15ec2352da6f0144",
+        "7cd7c980f8b1c518",
+        "fmt_tmp"
+      ]
+    ]
+  },
+  {
+    "id": "5d0c83a54a01c4f5",
+    "type": "function",
+    "z": "e814d485f7a2db0c",
+    "name": "Extrair BPM",
+    "func": "let p = typeof msg.payload === 'string' ? JSON.parse(msg.payload) : msg.payload;\nmsg.payload = p.bpm;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 140,
+    "wires": [
+      [
+        "15ec2352da6f0144",
+        "fmt_bpm"
+      ]
+    ]
+  },
+  {
+    "id": "15ec2352da6f0144",
+    "type": "ui_chart",
+    "z": "e814d485f7a2db0c",
+    "name": "Evolução Sinais Vitais",
+    "group": "5285741b0b75a1c1",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "label": "Evolução Sinais Vitais (Temp e BPM)",
+    "chartType": "line",
+    "legend": "true",
+    "xformat": "HH:mm:ss",
+    "interpolate": "linear",
+    "nodata": "",
+    "dot": false,
+    "ymin": "0",
+    "ymax": "200",
+    "removeOlder": 1,
+    "removeOlderPoints": "",
+    "removeOlderUnit": "3600",
+    "cutout": 0,
+    "useOneColor": false,
+    "useUTC": false,
+    "colors": [
+      "#1f77b4",
+      "#aec7e8",
+      "#ff7f0e",
+      "#2ca02c",
+      "#98df8a",
+      "#d62728",
+      "#ff9896",
+      "#9467bd",
+      "#c5b0d5"
+    ],
+    "outputs": 1,
+    "useDifferentColor": false,
+    "className": "",
+    "x": 1000,
+    "y": 100,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "7cd7c980f8b1c518",
+    "type": "ui_gauge",
+    "z": "e814d485f7a2db0c",
+    "name": "Gauge Temperatura",
+    "group": "5285741b0b75a1c1",
+    "order": 2,
+    "width": 0,
+    "height": 0,
+    "gtype": "gage",
+    "title": "Temperatura °C",
+    "label": "°C",
+    "format": "{{value}}",
+    "min": 0,
+    "max": "50",
+    "colors": [
+      "#00b500",
+      "#e6e600",
+      "#ca3838"
+    ],
+    "seg1": "35",
+    "seg2": "38",
+    "className": "",
+    "x": 1000,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "93bc14ad5dbb6e40",
+    "type": "function",
+    "z": "e814d485f7a2db0c",
+    "name": "Análise de Risco (Alertas)",
+    "func": "let bpm = msg.payload.bpm;\nlet temp = msg.payload.temperatura;\n\nlet msgAlerta = \"Paciente Estável\";\nlet color = \"green\";\n\nif(bpm > 120 || temp > 38.0) {\n    msgAlerta = \"ALERTA: Sinais Vitais Críticos! (BPM: \" + bpm + \" / Temp: \" + temp + \")\";\n    color = \"red\";\n}\n\nmsg.payload = msgAlerta;\nmsg.color = color;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 770,
+    "y": 200,
+    "wires": [
+      [
+        "6bc7185aab64aeb8"
+      ]
+    ]
+  },
+  {
+    "id": "6bc7185aab64aeb8",
+    "type": "ui_text",
+    "z": "e814d485f7a2db0c",
+    "group": "5285741b0b75a1c1",
+    "order": 3,
+    "width": 0,
+    "height": 0,
+    "name": "Status Alerta",
+    "label": "Status do Paciente:",
+    "format": "<font color=\"{{msg.color}}\">{{msg.payload}}</font>",
+    "layout": "row-spread",
+    "className": "",
+    "style": false,
+    "font": "",
+    "fontSize": 16,
+    "color": "#000000",
+    "x": 970,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "9e97cd2b17a1dfa0",
+    "type": "debug",
+    "z": "e814d485f7a2db0c",
+    "name": "Debug Output",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 740,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "c3e981251fc434a3",
+    "type": "mqtt-broker",
+    "name": "HiveMQ Public",
+    "broker": "broker.emqx.io",
+    "port": "1883",
+    "clientid": "Node-RED-CardioIA-Grafana",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthRetain": "false",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closeRetain": "false",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willRetain": "false",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "5285741b0b75a1c1",
+    "type": "ui_group",
+    "name": "Monitoramento em Tempo Real",
+    "tab": "9ae1bfe26301389c",
+    "order": 1,
+    "disp": true,
+    "width": "12",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "9ae1bfe26301389c",
+    "type": "ui_tab",
+    "name": "CardioIA Dashboard",
+    "icon": "dashboard",
+    "order": 1,
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "prom_config_temp",
+    "type": "prometheus-metric-config",
+    "name": "cardioia_temperatura",
+    "help": "Temp C",
+    "labels": "",
+    "mtype": "gauge",
+    "z": "e814d485f7a2db0c"
+  },
+  {
+    "id": "prom_config_bpm",
+    "type": "prometheus-metric-config",
+    "name": "cardioia_bpm",
+    "help": "BPM",
+    "labels": "",
+    "mtype": "gauge",
+    "z": "e814d485f7a2db0c"
+  },
+  {
+    "id": "prom_exp_temp",
+    "type": "prometheus-exporter",
+    "name": "Exp Temp",
+    "metric": "prom_config_temp",
+    "x": 1000,
+    "y": 180,
+    "wires": [],
+    "z": "e814d485f7a2db0c"
+  },
+  {
+    "id": "prom_exp_bpm",
+    "type": "prometheus-exporter",
+    "name": "Exp BPM",
+    "metric": "prom_config_bpm",
+    "x": 1000,
+    "y": 240,
+    "wires": [],
+    "z": "e814d485f7a2db0c"
+  },
+  {
+    "id": "fmt_tmp",
+    "type": "function",
+    "name": "Fmt Tmp",
+    "func": "msg.payload = {op: 'set', val: Number(msg.payload)}; return msg;",
+    "outputs": 1,
+    "x": 850,
+    "y": 180,
+    "wires": [
+      [
+        "prom_exp_temp"
+      ]
+    ],
+    "z": "e814d485f7a2db0c"
+  },
+  {
+    "id": "fmt_bpm",
+    "type": "function",
+    "name": "Fmt BPM",
+    "func": "msg.payload = {op: 'set', val: Number(msg.payload)}; return msg;",
+    "outputs": 1,
+    "x": 850,
+    "y": 240,
+    "wires": [
+      [
+        "prom_exp_bpm"
+      ]
+    ],
+    "z": "e814d485f7a2db0c"
+  }
 ]

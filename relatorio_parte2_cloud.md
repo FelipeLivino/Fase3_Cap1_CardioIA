@@ -13,8 +13,8 @@ O protocolo **MQTT (Message Queuing Telemetry Transport)** foi adotado como o pa
       "tipo_dado": "tempo_real" 
    }
    ```
-2. **Broker MQTT Cloud (HiveMQ)**: Utilizamos o cluster público do HiveMQ (`broker.hivemq.com`), porta 1883.
-3. **Topic Tree (Tópicos)**: A árvore de publicação obedeceu à padronização lógica `fiap/cardioia/henrique/paciente_01`.
+2. **Broker MQTT Cloud (EMQX)**: Na prática, para fugir da instabilidade extrema dos servidores HiveMQ gratuitos, adotamos o cluster público robusto do EMQX (`broker.emqx.io`), porta 1883.
+3. **Topic Tree (Tópicos)**: A árvore de publicação obedeceu à padronização lógica `fiap/cardioia/felipe/paciente_01`.
 4. **Subscriber (Node-RED)**: Na nuvem ou numa rede interna (Fog), instanciou-se o Node-RED, que fica à escuta (Subscribe) do mesmo tópico para interceptar todos os JSONs em tempo real.
 
 ## 3. Configuração do Dashboard no Node-RED

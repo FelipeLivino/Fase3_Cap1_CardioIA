@@ -8,9 +8,9 @@
 // --- CONFIGURAÇÕES DE REDE E MQTT ---
 const char* WIFI_SSID = "Wokwi-GUEST"; 
 const char* WIFI_PASSWORD = ""; 
-const char* MQTT_SERVER = "broker.hivemq.com";
+const char* MQTT_SERVER = "broker.emqx.io";
 const int MQTT_PORT = 1883;
-const char* MQTT_TOPIC = "fiap/cardioia/henrique/paciente_01";
+const char* MQTT_TOPIC = "fiap/cardioia/felipe/paciente_01";
 
 // --- MAPEAMENTO DE PINOS ---
 #define DHT_PINO 19
