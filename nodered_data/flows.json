@@ -11,7 +11,7 @@
     "id": "cd0ab8c9b360f2d9",
     "type": "mqtt in",
     "z": "e814d485f7a2db0c",
-    "name": "Recebimento CardioIA (HiveMQ)",
+    "name": "Recebimento CardioIA (EMQX)",
     "topic": "fiap/cardioia/felipe/paciente_01",
     "qos": "0",
     "datatype": "auto-detect",
@@ -24,10 +24,7 @@
     "y": 140,
     "wires": [
       [
-        "2b6359ebed2cc8df",
-        "5d0c83a54a01c4f5",
-        "93bc14ad5dbb6e40",
-        "9e97cd2b17a1dfa0"
+        "61ff61d4bd1ec3db"
       ]
     ]
   },
@@ -45,6 +42,8 @@
       [
         "2b6359ebed2cc8df",
         "5d0c83a54a01c4f5",
+        "extrair_postura",
+        "extrair_tipo",
         "93bc14ad5dbb6e40",
         "9e97cd2b17a1dfa0"
       ]
@@ -55,7 +54,7 @@
     "type": "function",
     "z": "e814d485f7a2db0c",
     "name": "Extrair Temperatura",
-    "func": "let p = typeof msg.payload === 'string' ? JSON.parse(msg.payload) : msg.payload;\nmsg.payload = p.temperatura;\nreturn msg;",
+    "func": "let p = typeof msg.payload === 'string' ? JSON.parse(msg.payload) : msg.payload;\nmsg.topic = 'Temperatura';\nmsg.payload = p.temperatura;\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -77,7 +76,7 @@
     "type": "function",
     "z": "e814d485f7a2db0c",
     "name": "Extrair BPM",
-    "func": "let p = typeof msg.payload === 'string' ? JSON.parse(msg.payload) : msg.payload;\nmsg.payload = p.bpm;\nreturn msg;",
+    "func": "let p = typeof msg.payload === 'string' ? JSON.parse(msg.payload) : msg.payload;\nmsg.topic = 'BPM';\nmsg.payload = p.bpm;\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -94,6 +93,48 @@
     ]
   },
   {
+    "id": "extrair_postura",
+    "type": "function",
+    "z": "e814d485f7a2db0c",
+    "name": "Extrair Postura",
+    "func": "let p = typeof msg.payload === 'string' ? JSON.parse(msg.payload) : msg.payload;\nmsg.topic = 'Postura';\nmsg.payload = p.postura;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 740,
+    "y": 200,
+    "wires": [
+      [
+        "15ec2352da6f0144",
+        "gauge_postura",
+        "fmt_postura"
+      ]
+    ]
+  },
+  {
+    "id": "extrair_tipo",
+    "type": "function",
+    "z": "e814d485f7a2db0c",
+    "name": "Extrair Tipo",
+    "func": "let p = typeof msg.payload === 'string' ? JSON.parse(msg.payload) : msg.payload;\nmsg.payload = p.tipo || p.tipo_dado || 'REALTIME';\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 260,
+    "wires": [
+      [
+        "texto_tipo"
+      ]
+    ]
+  },
+  {
     "id": "15ec2352da6f0144",
     "type": "ui_chart",
     "z": "e814d485f7a2db0c",
@@ -102,7 +143,7 @@
     "order": 1,
     "width": 0,
     "height": 0,
-    "label": "Evolução Sinais Vitais (Temp e BPM)",
+    "label": "Evolução Sinais Vitais (Temp, BPM e Postura)",
     "chartType": "line",
     "legend": "true",
     "xformat": "HH:mm:ss",
@@ -138,6 +179,33 @@
     ]
   },
   {
+    "id": "gauge_postura",
+    "type": "ui_gauge",
+    "z": "e814d485f7a2db0c",
+    "name": "Gauge Postura",
+    "group": "5285741b0b75a1c1",
+    "order": 4,
+    "width": 0,
+    "height": 0,
+    "gtype": "gage",
+    "title": "Postura / Inclinação",
+    "label": "m/s² eixo X",
+    "format": "{{value}}",
+    "min": "-10",
+    "max": "10",
+    "colors": [
+      "#ca3838",
+      "#00b500",
+      "#ca3838"
+    ],
+    "seg1": "-7",
+    "seg2": "7",
+    "className": "",
+    "x": 1000,
+    "y": 300,
+    "wires": []
+  },
+  {
     "id": "7cd7c980f8b1c518",
     "type": "ui_gauge",
     "z": "e814d485f7a2db0c",
@@ -165,11 +233,32 @@
     "wires": []
   },
   {
+    "id": "texto_tipo",
+    "type": "ui_text",
+    "z": "e814d485f7a2db0c",
+    "group": "5285741b0b75a1c1",
+    "order": 5,
+    "width": 0,
+    "height": 0,
+    "name": "Tipo de Envio",
+    "label": "Origem da leitura:",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "style": false,
+    "font": "",
+    "fontSize": 16,
+    "color": "#000000",
+    "x": 970,
+    "y": 360,
+    "wires": []
+  },
+  {
     "id": "93bc14ad5dbb6e40",
     "type": "function",
     "z": "e814d485f7a2db0c",
     "name": "Análise de Risco (Alertas)",
-    "func": "let bpm = msg.payload.bpm;\nlet temp = msg.payload.temperatura;\n\nlet msgAlerta = \"Paciente Estável\";\nlet color = \"green\";\n\nif(bpm > 120 || temp > 38.0) {\n    msgAlerta = \"ALERTA: Sinais Vitais Críticos! (BPM: \" + bpm + \" / Temp: \" + temp + \")\";\n    color = \"red\";\n}\n\nmsg.payload = msgAlerta;\nmsg.color = color;\nreturn msg;",
+    "func": "let p = typeof msg.payload === 'string' ? JSON.parse(msg.payload) : msg.payload;\nlet bpm = Number(p.bpm);\nlet temp = Number(p.temperatura);\nlet postura = Number(p.postura || 0);\nlet tipo = p.tipo || p.tipo_dado || 'REALTIME';\n\nlet msgAlerta = \"Paciente Estável\";\nlet color = \"green\";\n\nif (bpm > 120 || temp > 38.0 || Math.abs(postura) > 7) {\n    msgAlerta = \"ALERTA: Sinais Vitais Críticos! (BPM: \" + bpm + \" / Temp: \" + temp + \" / Postura: \" + postura.toFixed(2) + \")\";\n    color = \"red\";\n}\n\nif (tipo === 'CACHE') {\n    msgAlerta += \" - leitura sincronizada do cache\";\n}\n\nmsg.payload = msgAlerta;\nmsg.color = color;\nreturn msg;",
     "outputs": 1,
     "timeout": 0,
     "noerr": 0,
@@ -177,7 +266,7 @@
     "finalize": "",
     "libs": [],
     "x": 770,
-    "y": 200,
+    "y": 420,
     "wires": [
       [
         "6bc7185aab64aeb8"
@@ -202,7 +291,7 @@
     "fontSize": 16,
     "color": "#000000",
     "x": 970,
-    "y": 200,
+    "y": 420,
     "wires": []
   },
   {
@@ -225,7 +314,7 @@
   {
     "id": "c3e981251fc434a3",
     "type": "mqtt-broker",
-    "name": "HiveMQ Public",
+    "name": "EMQX Public",
     "broker": "broker.emqx.io",
     "port": "1883",
     "clientid": "Node-RED-CardioIA-Grafana",
@@ -292,6 +381,15 @@
     "z": "e814d485f7a2db0c"
   },
   {
+    "id": "prom_config_postura",
+    "type": "prometheus-metric-config",
+    "name": "cardioia_postura",
+    "help": "Postura eixo X MPU6050",
+    "labels": "",
+    "mtype": "gauge",
+    "z": "e814d485f7a2db0c"
+  },
+  {
     "id": "prom_exp_temp",
     "type": "prometheus-exporter",
     "name": "Exp Temp",
@@ -308,6 +406,16 @@
     "metric": "prom_config_bpm",
     "x": 1000,
     "y": 240,
+    "wires": [],
+    "z": "e814d485f7a2db0c"
+  },
+  {
+    "id": "prom_exp_postura",
+    "type": "prometheus-exporter",
+    "name": "Exp Postura",
+    "metric": "prom_config_postura",
+    "x": 1010,
+    "y": 480,
     "wires": [],
     "z": "e814d485f7a2db0c"
   },
@@ -337,6 +445,21 @@
     "wires": [
       [
         "prom_exp_bpm"
+      ]
+    ],
+    "z": "e814d485f7a2db0c"
+  },
+  {
+    "id": "fmt_postura",
+    "type": "function",
+    "name": "Fmt Postura",
+    "func": "msg.payload = {op: 'set', val: Number(msg.payload)}; return msg;",
+    "outputs": 1,
+    "x": 860,
+    "y": 480,
+    "wires": [
+      [
+        "prom_exp_postura"
       ]
     ],
     "z": "e814d485f7a2db0c"

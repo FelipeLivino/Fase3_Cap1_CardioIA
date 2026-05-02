@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "Felipe Livino / Henrique",
+  "author": "Felipe Livino",
   "editor": "wokwi",
   "parts": [
     {
@@ -13,8 +13,8 @@
     {
       "type": "wokwi-dht22",
       "id": "dht1",
-      "top": -297.3,
-      "left": -15,
+      "top": -306.9,
+      "left": 42.6,
       "attrs": { "temperature": "36.5", "humidity": "85.5" }
     },
     { "type": "wokwi-potentiometer", "id": "pot1", "top": -231.7, "left": 120, "attrs": {} },
@@ -29,29 +29,41 @@
     {
       "type": "wokwi-text",
       "id": "text3",
-      "top": -336,
-      "left": -38.4,
+      "top": -345.6,
+      "left": 38.4,
       "attrs": { "text": "Temperatura Corpórea" }
     },
     {
       "type": "wokwi-text",
       "id": "text4",
-      "top": -80,
-      "left": 120,
+      "top": -76.8,
+      "left": 105.6,
       "attrs": { "text": "Rede Wi-Fi (ON/OFF)" }
-    }
+    },
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": -274.58, "left": -256.88, "attrs": {} },
+    { "type": "wokwi-microsd-card", "id": "sd1", "top": 86.63, "left": -316.73, "attrs": {} }
   ],
   "connections": [
     [ "esp:TX", "$serialMonitor:RX", "", [] ],
     [ "esp:RX", "$serialMonitor:TX", "", [] ],
     [ "dht1:GND", "esp:GND.2", "black", [ "v19.2", "v67.2" ] ],
     [ "dht1:VCC", "esp:5V", "red", [ "v9.6", "h-230.4", "v211.2" ] ],
-    [ "dht1:SDA", "esp:19", "gold", [ "v0" ] ],
+    [ "dht1:SDA", "esp:4", "gold", [ "h-38.3", "v211.2" ] ],
     [ "pot1:VCC", "esp:3V3", "red", [ "h-0.8", "v28.8", "h-249.75" ] ],
     [ "pot1:GND", "esp:GND.2", "black", [ "v0" ] ],
-    [ "esp:35", "pot1:SIG", "green", [ "h-57.45", "v-105.6", "h330" ] ],
-    [ "sw1:1", "esp:GND.2", "black", [ "v20", "h-69.3", "v-100" ] ],
-    [ "sw1:2", "esp:12", "blue", [ "v40", "h-220", "v-90" ] ]
+    [ "esp:35", "pot1:SIG", "green", [ "h-28.65", "v-105.6", "h312.6" ] ],
+    [ "sw1:1", "esp:GND.2", "black", [ "v20", "h-50.1", "v-100" ] ],
+    [ "sw1:2", "esp:25", "blue", [ "v121.6", "h-299.6", "v-124.8" ] ],
+    [ "imu1:VCC", "esp:3V3", "red", [] ],
+    [ "imu1:GND", "esp:GND.1", "black", [ "v-19.2", "h28.88", "v316.8" ] ],
+    [ "imu1:SCL", "esp:22", "yellow", [ "v-28.8", "h211.28", "v220.8" ] ],
+    [ "imu1:SDA", "esp:21", "blue", [ "v-38.4", "h249.68", "v259.2" ] ],
+    [ "sd1:VCC", "esp:5V", "red", [] ],
+    [ "sd1:GND", "esp:GND.1", "black", [ "h9.6", "v-86.29" ] ],
+    [ "sd1:CS", "esp:5", "white", [ "h278.4", "v-163.14" ] ],
+    [ "sd1:MOSI", "esp:23", "orange", [] ],
+    [ "sd1:SCK", "esp:18", "brown", [ "h297.6", "v-144.01" ] ],
+    [ "sd1:MISO", "esp:19", "purple", [] ]
   ],
   "dependencies": {}
 }
