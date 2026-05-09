@@ -1,4 +1,16 @@
-# IR Alem 1 - Comunicacao automatizada com REST e e-mail
+# FIAP - Faculdade de Informática e Administração Paulista
+
+<p align="center">
+  <a href="https://www.fiap.com.br/">
+    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/logo-fiap.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="40%" height="40%">
+  </a>
+</p>
+
+<br>
+
+# CardioIA
+
+## IR Alem 1 - Comunicacao automatizada com REST e e-mail
 
 Sistema academico de monitoramento de sinais vitais, implementado em Python, com
 comunicacao REST, interface web, validacao de risco clinico e automacao de alerta por
@@ -8,6 +20,24 @@ O projeto foi desenhado para demonstrar, em pequena escala, um fluxo comum de sa
 digital: uma aplicacao recebe dados de pacientes, aplica regras de negocio sobre os
 sinais vitais e aciona uma notificacao automatizada quando existe risco operacional ou
 clinico.
+
+## Grupo
+
+**Rumo ao NEXT**
+
+## Integrantes
+
+- Felipe Livino dos Santos (RM 563187)
+- Daniel Veiga Rodrigues de Faria (RM 561410)
+- Tomas Haru Sakugawa Becker (RM 564147)
+- Daniel Tavares de Lima Freitas (RM 562625)
+- Gabriel Konno Carrozza (RM 564468)
+
+## Professores
+
+**Tutor:** Caique Nonato da Silva Bezerra
+
+**Coordenador:** André Godoi Chiovato
 
 ## Sumario executivo
 
@@ -322,3 +352,22 @@ Entregaveis atendidos:
 - execucao via Docker Compose;
 - relatorio curto em `relatorio.md`;
 - estrutura organizada e documentada.
+
+
+## Histórico de Lançamentos
+
+### 1.0.0 08/05/2026
+- Implementação da API REST para recebimento de sinais vitais.
+- Interface web simples para visualização e envio de dados.
+- Validação de risco clínico baseada em regras de negócio.
+- Simulação de alertas por e-mail gravados em arquivo de log.
+
+## Licença
+
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms">
+  <a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por
+  <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">FIAP</a>
+  está licenciado sobre
+  <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.
+</p>

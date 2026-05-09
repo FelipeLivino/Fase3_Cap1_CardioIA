@@ -8,17 +8,17 @@ Apresente o objetivo do projeto: aplicar IA em series temporais de saude, usando
 
 Mostre no notebook os graficos das tres janelas de exemplo. Destaque que a base e sintetica e reprodutivel, criada para permitir comparacao controlada entre os modelos.
 
-## 1:10 - 1:50 | Modelo tradicional
+## 1:10 - 1:50 | Modelos tradicionais
 
-Explique que a regressao logistica nao recebe a serie bruta, mas atributos como media, desvio padrao, amplitude, RMSSD, autocorrelacao e energia espectral. Mostre o relatorio de classificacao e comente a interpretabilidade.
+Explique que os modelos tradicionais nao recebem a serie bruta, mas atributos como media, desvio padrao, amplitude, RMSSD, autocorrelacao e energia espectral. Cite que foram comparados Regressao Logistica, SVM, Random Forest, KNN, Arvore de Decisao, Gradient Boosting e Naive Bayes Gaussiano.
 
 ## 1:50 - 2:40 | Modelo neuromorfico LIF
 
-Mostre a funcao `lif_encode`. Explique de forma simples: cada neuronio acumula corrente, perde carga com o tempo e dispara quando ultrapassa um limiar. As taxas e tempos de disparo viram atributos para uma camada linear.
+Mostre a funcao `lif_encode`. Explique de forma simples: cada neuronio acumula corrente, perde carga com o tempo e dispara quando ultrapassa um limiar. Depois mostre as secoes 3.1, 3.2 e 3.3: LIF melhorado com normalizacao pelo treino, LIF multi-escala temporal e LIF multi-escala com leitura nao linear.
 
 ## 2:40 - 3:30 | Comparacao dos resultados
 
-Mostre a tabela final e as matrizes de confusao. Comente que, neste experimento, a regressao logistica foi superior porque os atributos estatisticos separam muito bem as classes sinteticas. O LIF foi util para explorar codificacao temporal por eventos, mas depende de parametros manuais.
+Mostre a tabela final e as matrizes de confusao. Comente que, neste experimento, os atributos estatisticos podem favorecer os classificadores tradicionais porque separam bem as classes sinteticas. As variacoes LIF tornam a comparacao mais justa porque testam melhorias na codificacao por disparos e na camada de leitura.
 
 ## 3:30 - 4:00 | Analise critica
 

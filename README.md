@@ -312,7 +312,7 @@ Também não fazem parte deste repositório bases externas pesadas, como dataset
 
 ## Histórico de Lançamentos
 
-### 0.3.0 - 01/05/2026
+### 0.3.0 - 09/05/2026
 
 - Atualização do fluxo Node-RED para suportar `postura` e `tipo`.
 - Inclusão da métrica Prometheus `cardioia_postura`.
