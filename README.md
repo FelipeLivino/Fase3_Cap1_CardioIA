@@ -253,7 +253,7 @@ http://localhost:1880
 
 Se necessário, importe manualmente o arquivo `node_red_flow.json` e faça o deploy.
 
-4. Execute a simulação no Wokwi usando os arquivos da pasta `wokwi/`.
+4. Execute a simulação no Wokwi usando os arquivos da pasta `wokwi/`, ou pelo link <a href="https://wokwi.com/projects/461851222553172993">https://wokwi.com/projects/461851222553172993</a>.
 
 5. No Wokwi, deixe a chave de rede ligada para envio em tempo real. Desligue a chave para simular queda de conectividade e validar o cache offline.
 
