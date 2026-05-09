@@ -1,0 +1,25 @@
+services:
+  api:
+    build: .
+    container_name: ir_alem_1_api
+    command: python api_server.py
+    environment:
+      API_HOST: 0.0.0.0
+      API_PORT: 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./outbox:/app/outbox
+
+  demo:
+    build: .
+    container_name: ir_alem_1_demo
+    command: python demo.py
+    depends_on:
+      - api
+    environment:
+      VITALS_API_BASE_URL: http://api:8000
+    volumes:
+      - ./outbox:/app/outbox
+    profiles:
+      - demo

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monitoramento de Sinais Vitais</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="panel received-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">API REST</p>
+            <h1>Sinais vitais recebidos</h1>
+          </div>
+          <button class="icon-button" id="refreshButton" type="button" title="Atualizar lista">
+            ↻
+          </button>
+        </div>
+
+        <div class="summary-row">
+          <div>
+            <span class="summary-label">Registros</span>
+            <strong id="totalRecords">0</strong>
+          </div>
+          <div>
+            <span class="summary-label">Alertas</span>
+            <strong id="totalAlerts">0</strong>
+          </div>
+        </div>
+
+        <div class="records-list" id="recordsList">
+          <p class="empty-state">Nenhuma leitura recebida ainda.</p>
+        </div>
+      </section>
+
+      <section class="panel form-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Nova leitura</p>
+            <h2>Enviar sinais vitais</h2>
+          </div>
+        </div>
+
+        <form id="vitalsForm">
+          <label>
+            ID do paciente
+            <input name="patient_id" type="text" value="PAC004" required>
+          </label>
+
+          <label>
+            Nome do paciente
+            <input name="patient_name" type="text" value="Daniel Rocha" required>
+          </label>
+
+          <div class="field-grid">
+            <label>
+              Frequencia cardiaca
+              <input name="heart_rate" type="number" min="1" step="1" value="86" required>
+            </label>
+
+            <label>
+              Temperatura
+              <input name="temperature" type="number" min="30" max="45" step="0.1" value="36.8" required>
+            </label>
+          </div>
+
+          <label class="toggle-row">
+            <input name="movement_detected" type="checkbox" checked>
+            <span>Movimento detectado</span>
+          </label>
+
+          <button class="primary-button" type="submit">Enviar leitura</button>
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
