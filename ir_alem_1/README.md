@@ -82,7 +82,7 @@ Registros em memoria              Servico de e-mail simulado
 | `email_service.py` | Simular o envio automatizado de e-mail gravando mensagens em arquivo local. |
 | `rest_client.py` | Demonstrar consumo programatico da API usando HTTP. |
 | `demo.py` | Executar um cenario completo de envio e consulta de leituras. |
-| `static/` | Entregar a tela web usada para visualizar registros e enviar novas leituras. |
+| `static/` | Entregar a tela web em React usada para visualizar registros e enviar novas leituras. |
 | `Dockerfile` | Empacotar a aplicacao Python em uma imagem executavel. |
 | `docker-compose.yml` | Orquestrar a API e, opcionalmente, o fluxo de demonstracao. |
 
@@ -96,9 +96,9 @@ Registros em memoria              Servico de e-mail simulado
 |-- email_service.py            # Simular o envio automatizado de e-mail gravando mensagens em arquivo local
 |-- demo.py                     # Executar um cenário completo de envio e consulta de leituras
 |-- static/                     # Entregar a tela web usada para visualizar registros e enviar novas leituras
-|   |-- index.html              # Página HTML da interface web
+|   |-- index.html              # Página HTML com o ponto de montagem do React
 |   |-- styles.css              # Estilos CSS para a interface web
-|   `-- app.js                  # JavaScript para interações na interface web
+|   `-- app.js                  # Componentes React e chamadas à API
 |-- Dockerfile                  # Empacotar a aplicação Python em uma imagem executável
 |-- docker-compose.yml          # Orquestrar a API e, opcionalmente, o fluxo de demonstração
 |-- relatorio.md                # Relatório do projeto
@@ -348,7 +348,7 @@ Entregaveis atendidos:
 - API REST funcional em Python;
 - logica de verificacao de riscos;
 - automacao de e-mail simulada;
-- tela web para operacao visual;
+- tela web em React para operacao visual;
 - execucao via Docker Compose;
 - relatorio curto em `relatorio.md`;
 - estrutura organizada e documentada.
