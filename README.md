@@ -315,37 +315,27 @@ Também não fazem parte deste repositório bases externas pesadas, como dataset
 
 - Funcionamento wokwi
 <p align="center">
-  <a href="https://www.fiap.com.br/">
-    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/wokwi.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="40%" height="40%">
-  </a>
+    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/wokwi.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="60%">
 </p>
 
 - Fluxo Node-RED
 <p align="center">
-  <a href="https://www.fiap.com.br/">
-    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/node-red.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="40%" height="40%">
-  </a>
+    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/node-red.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="60%">
 </p>
 
 - Node-RED Dashboards
 <p align="center">
-  <a href="https://www.fiap.com.br/">
-    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/node-red-fluxo.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="40%" height="40%">
-  </a>
+    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/node-red-fluxo.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0"width="60%">
 </p>
 
 - Node-RED Dashboards AVISOS
 <p align="center">
-  <a href="https://www.fiap.com.br/">
-    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/node-red-aviso.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="40%" height="40%">
-  </a>
+    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/node-red-aviso.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="60%">
 </p>
 
 - Dashboards Grafana
 <p align="center">
-  <a href="https://www.fiap.com.br/">
-    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/grafana.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="40%" height="40%">
-  </a>
+    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/grafana.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="60%">
 </p>
 
 
