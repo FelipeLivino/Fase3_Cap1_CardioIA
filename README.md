@@ -320,12 +320,13 @@ Também não fazem parte deste repositório bases externas pesadas, como dataset
 
 - Fluxo Node-RED
 <p align="center">
-    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/node-red.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="60%">
+    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/node-red-fluxo.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0"width="60%">
 </p>
 
 - Node-RED Dashboards
+
 <p align="center">
-    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/node-red-fluxo.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0"width="60%">
+    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/node-red.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="60%">
 </p>
 
 - Node-RED Dashboards AVISOS
