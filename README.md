@@ -310,6 +310,45 @@ Também não fazem parte deste repositório bases externas pesadas, como dataset
 - `relatorio_parte1_edge.md`: detalha a implementação de borda, sensores, cache local e resiliência offline.
 - `relatorio_parte2_cloud.md`: detalha a arquitetura de nuvem, processamento e visualização.
 
+
+## Demonstrações de fluxos
+
+- Funcionamento wokwi
+<p align="center">
+  <a href="https://www.fiap.com.br/">
+    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/wokwi.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="40%" height="40%">
+  </a>
+</p>
+
+- Fluxo Node-RED
+<p align="center">
+  <a href="https://www.fiap.com.br/">
+    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/node-red.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="40%" height="40%">
+  </a>
+</p>
+
+- Node-RED Dashboards
+<p align="center">
+  <a href="https://www.fiap.com.br/">
+    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/node-red-fluxo.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="40%" height="40%">
+  </a>
+</p>
+
+- Node-RED Dashboards AVISOS
+<p align="center">
+  <a href="https://www.fiap.com.br/">
+    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/node-red-aviso.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="40%" height="40%">
+  </a>
+</p>
+
+- Dashboards Grafana
+<p align="center">
+  <a href="https://www.fiap.com.br/">
+    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/grafana.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="40%" height="40%">
+  </a>
+</p>
+
+
 ## Histórico de Lançamentos
 
 ### 0.3.0 - 09/05/2026
