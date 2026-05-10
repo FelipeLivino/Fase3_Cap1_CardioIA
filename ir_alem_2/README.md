@@ -49,14 +49,14 @@ Foram comparados:
 
 ```text
 .
-├── notebooks/
-│   └── ir_alem_2_series_temporais_saude.ipynb
-├── docs/
-│   └── roteiro_video.md
-├── reports/
-│   └── relatorio_comparativo.md
-├── requirements.txt
-└── README.md
+├── notebooks/                                    # Pasta com notebooks Jupyter
+│   └── ir_alem_2_series_temporais_saude.ipynb    # Notebook principal com análise e comparação de modelos
+├── docs/                                         # Pasta com documentação
+│   └── roteiro_video.md                           # Roteiro sugerido para apresentação em vídeo
+├── reports/                                       # Pasta com relatórios
+│   └── relatorio_comparativo.md                   # Relatório comparativo dos modelos
+├── requirements.txt                               # Arquivo com dependências Python
+└── README.md                                      # Este arquivo README
 ```
 
 ## Como executar

@@ -190,30 +190,30 @@ O dashboard provisionado em `grafana/provisioning/dashboards/cardioia.json` cont
 ## Estrutura do Projeto
 
 ```text
-├── asset/
-│   └── logo-fiap.png
-├── grafana/
-│   └── provisioning/
-│       ├── dashboards/
-│       │   ├── dashboard.yml
-│       │   └── cardioia.json
-│       └── datasources/
-│           └── datasource.yml
-├── nodered_data/
-│   ├── flows.json
-│   ├── package.json
-│   ├── package-lock.json
-│   └── settings.js
-├── wokwi/
-│   ├── diagram.json
-│   ├── libraries.txt
-│   ├── sketch.ino
-│   └── wokwi-project.txt
-├── docker-compose.yml
-├── node_red_flow.json
-├── prometheus.yml
-├── relatorio_parte1_edge.md
-└── relatorio_parte2_cloud.md
+├── asset/                          # Pasta com ativos visuais
+│   └── logo-fiap.png               # Logo da FIAP
+├── grafana/                        # Configurações para Grafana
+│   └── provisioning/               # Pasta de provisionamento
+│       ├── dashboards/             # Dashboards provisionados
+│       │   ├── dashboard.yml       # Arquivo de configuração do dashboard
+│       │   └── cardioia.json       # Definição do dashboard CardioIA
+│       └── datasources/            # Fontes de dados
+│           └── datasource.yml      # Configuração da fonte de dados Prometheus
+├── nodered_data/                   # Dados para Node-RED
+│   ├── flows.json                  # Fluxo do Node-RED
+│   ├── package.json                # Dependências do Node-RED
+│   ├── package-lock.json           # Lockfile das dependências
+│   └── settings.js                 # Configurações do Node-RED
+├── wokwi/                          # Arquivos para simulação no Wokwi
+│   ├── diagram.json                # Diagrama do circuito
+│   ├── libraries.txt               # Bibliotecas necessárias
+│   ├── sketch.ino                  # Código do firmware ESP32
+│   └── wokwi-project.txt           # Configuração do projeto Wokwi
+├── docker-compose.yml              # Arquivo para subir os serviços com Docker Compose
+├── node_red_flow.json              # Exportação do fluxo Node-RED para importação manual
+├── prometheus.yml                  # Configuração do Prometheus
+├── relatorio_parte1_edge.md        # Relatório da parte 1 (edge)
+└── relatorio_parte2_cloud.md       # Relatório da parte 2 (cloud)
 ```
 
 ## Pré-Requisitos

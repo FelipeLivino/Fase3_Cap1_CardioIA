@@ -90,21 +90,21 @@ Registros em memoria              Servico de e-mail simulado
 
 ```text
 .
-|-- api_server.py
-|-- rest_client.py
-|-- risk_checker.py
-|-- email_service.py
-|-- demo.py
-|-- static/
-|   |-- index.html
-|   |-- styles.css
-|   `-- app.js
-|-- Dockerfile
-|-- docker-compose.yml
-|-- relatorio.md
-|-- .dockerignore
-|-- .gitignore
-`-- outbox/              # Criado automaticamente quando alertas forem gerados
+|-- api_server.py              # Servir a API REST, validar payloads, armazenar leituras, servir arquivos estáticos e coordenar alertas
+|-- rest_client.py              # Demonstrar consumo programático da API usando HTTP
+|-- risk_checker.py             # Centralizar as regras de detecção de risco para manter a lógica clínica isolada
+|-- email_service.py            # Simular o envio automatizado de e-mail gravando mensagens em arquivo local
+|-- demo.py                     # Executar um cenário completo de envio e consulta de leituras
+|-- static/                     # Entregar a tela web usada para visualizar registros e enviar novas leituras
+|   |-- index.html              # Página HTML da interface web
+|   |-- styles.css              # Estilos CSS para a interface web
+|   `-- app.js                  # JavaScript para interações na interface web
+|-- Dockerfile                  # Empacotar a aplicação Python em uma imagem executável
+|-- docker-compose.yml          # Orquestrar a API e, opcionalmente, o fluxo de demonstração
+|-- relatorio.md                # Relatório do projeto
+|-- .dockerignore               # Arquivo para ignorar arquivos no build do Docker
+|-- .gitignore                  # Arquivo para ignorar arquivos no Git
+`-- outbox/                     # Criado automaticamente quando alertas forem gerados
 ```
 
 ## Fluxo funcional
