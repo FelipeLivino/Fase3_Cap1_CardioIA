@@ -4,6 +4,8 @@
 
 Aplicar técnicas de IA para análise de séries temporais de sinais vitais (batimentos cardíacos), comparando um classificador tradicional (Regressão Logística) com uma rede neuromórfica simples (modelo Leaky Integrate-and-Fire - LIF).
 
+<a src="https://www.youtube.com/watch?v=M0Rk2l9C-NE">Link do video: https://www.youtube.com/watch?v=M0Rk2l9C-NE</a>
+
 ## Datasets
 
 - **MIT-BIH Arrhythmia Dataset**: 109.446 amostras, 5 classes de arritmia, 125Hz
