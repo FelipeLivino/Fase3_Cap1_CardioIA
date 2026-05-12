@@ -16,6 +16,8 @@ O **CardioIA** é uma prova de conceito de arquitetura IoT para monitoramento de
 
 O foco técnico desta fase é demonstrar uma malha de aquisição, transmissão, resiliência offline e observabilidade em tempo real, com separação clara entre borda, mensageria, processamento e visualização.
 
+<a src="https://www.youtube.com/watch?v=yZxdFXcYOxU">Link do video: https://www.youtube.com/watch?v=yZxdFXcYOxU</a>
+
 ## Grupo
 
 **Rumo ao NEXT**
