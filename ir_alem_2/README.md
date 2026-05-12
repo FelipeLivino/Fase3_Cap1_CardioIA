@@ -1,125 +1,73 @@
-# FIAP - Faculdade de Informática e Administração Paulista
-
-<p align="center">
-  <a href="https://www.fiap.com.br/">
-    <img src="https://github.com/FelipeLivino/Fase3_Cap1_CardioIA/blob/main/asset/logo-fiap.png" alt="FIAP - Faculdade de Informática e Administração Paulista" border="0" width="40%" height="40%">
-  </a>
-</p>
-
-<br>
-
-# CardioIA
-
-# IR ALEM 2 - IA em series temporais de saude
-
-Projeto para comparar um classificador tradicional com uma abordagem neuromorfica simples em series temporais de sinais vitais.
-
-## Grupo
-
-**Rumo ao NEXT**
-
-## Integrantes
-
-- Felipe Livino dos Santos (RM 563187)
-- Daniel Veiga Rodrigues de Faria (RM 561410)
-- Tomas Haru Sakugawa Becker (RM 564147)
-- Daniel Tavares de Lima Freitas (RM 562625)
-- Gabriel Konno Carrozza (RM 564468)
-
-## Professores
-
-**Tutor:** Caique Nonato da Silva Bezerra
-
-**Coordenador:** André Godoi Chiovato
+# Classificação de Batimentos Cardíacos: Regressão Logística vs Rede Neuromórfica (LIF)
 
 ## Objetivo
 
-Analisar janelas simuladas de batimentos cardiacos e classificar tres estados:
+Aplicar técnicas de IA para análise de séries temporais de sinais vitais (batimentos cardíacos), comparando um classificador tradicional (Regressão Logística) com uma rede neuromórfica simples (modelo Leaky Integrate-and-Fire - LIF).
 
-- `normal`
-- `taquicardia`
-- `irregular`
+## Datasets
 
-Foram comparados:
+- **MIT-BIH Arrhythmia Dataset**: 109.446 amostras, 5 classes de arritmia, 125Hz
+- **PTB Diagnostic ECG Database**: 14.552 amostras, classificação binária (normal/anormal), 125Hz
 
-- Modelos tradicionais com atributos estatisticos extraidos da serie temporal: Regressao Logistica, SVM, Random Forest, KNN, Arvore de Decisao, Gradient Boosting e Naive Bayes Gaussiano.
-- Variacoes neuromorficas baseadas em neuronios LIF, usadas como extratores de caracteristicas temporais por disparos, com leitura linear e nao linear.
+Fonte: [Kaggle - ECG Heartbeat Categorization Dataset](https://www.kaggle.com/datasets/shayanfazeli/heartbeat)
 
-## Estrutura
+Referência: Kachuee, M., Fazeli, S., & Sarrafzadeh, M. (2018). "ECG Heartbeat Classification: A Deep Transferable Representation." arXiv:1805.00794.
 
-```text
-.
-├── notebooks/                                    # Pasta com notebooks Jupyter
-│   └── ir_alem_2_series_temporais_saude.ipynb    # Notebook principal com análise e comparação de modelos
-├── docs/                                         # Pasta com documentação
-│   └── roteiro_video.md                           # Roteiro sugerido para apresentação em vídeo
-├── reports/                                       # Pasta com relatórios
-│   └── relatorio_comparativo.md                   # Relatório comparativo dos modelos
-├── requirements.txt                               # Arquivo com dependências Python
-└── README.md                                      # Este arquivo README
+## Estrutura do Projeto
+
+```
+├── ecg_classification.ipynb   # Notebook Jupyter com todo o pipeline
+├── relatorio_comparativo.md   # Relatório comparativo (2 páginas)
+├── README.md                  # Este arquivo
+├── mitbih_train.csv           # Dados MIT-BIH (treino)
+├── mitbih_test.csv            # Dados MIT-BIH (teste)
+├── ptbdb_normal.csv           # Dados PTB (normal)
+├── ptbdb_abnormal.csv         # Dados PTB (anormal)
+└── contexto_dataset.txt       # Descrição do dataset
 ```
 
-## Como executar
+## Como Executar
 
-1. Crie um ambiente virtual:
+### Requisitos
 
 ```bash
-python -m venv .venv
+pip install numpy pandas scikit-learn matplotlib jupyter
 ```
 
-2. Ative o ambiente:
+### Execução
 
 ```bash
-# Windows PowerShell
-.venv\Scripts\Activate.ps1
+jupyter notebook ecg_classification.ipynb
 ```
 
-3. Instale as dependencias:
+Ou abrir diretamente no VS Code / JupyterLab.
 
-```bash
-pip install -r requirements.txt
-```
+## Modelos Implementados
 
-4. Abra o notebook:
+### 1. Regressão Logística (Baseline)
+- Classificador linear tradicional
+- Aplicado diretamente nas 187 features temporais do sinal ECG
+- Solver LBFGS com regularização L2
 
-```bash
-jupyter notebook notebooks/ir_alem_2_series_temporais_saude.ipynb
-```
+### 2. Rede Neuromórfica LIF (Leaky Integrate-and-Fire)
+- População de 10 neurônios LIF com parâmetros variados
+- Codificação temporal: sinal ECG → padrões de spikes
+- Features extraídas: contagem de spikes, taxa de disparo, ISI médio, variância ISI
+- Camada de readout (Regressão Logística) para classificação final
 
-5. Execute todas as celulas para gerar as metricas, matriz de confusao e graficos.
+## Resultados Esperados
 
-## Entregaveis
+| Dataset | Modelo | Acurácia | F1-Score |
+|---------|--------|----------|----------|
+| PTB | Reg. Logística | ~0.92 | ~0.92 |
+| PTB | LIF + Readout | ~0.82 | ~0.82 |
+| MIT-BIH | Reg. Logística | ~0.87 | ~0.85 |
+| MIT-BIH | LIF + Readout | ~0.75 | ~0.70 |
 
-- Notebook Python comentado: `notebooks/ir_alem_2_series_temporais_saude.ipynb`
-- Relatorio comparativo: `reports/relatorio_comparativo.md`
-- Roteiro sugerido para apresentacao: `docs/roteiro_video.md`
-- Repositorio GitHub publico: publicar este projeto em um repositorio publico.
-- Video de ate 4 minutos: publicar no YouTube como "nao listado" e substituir o marcador abaixo.
+## Autor
 
-## Video
-
-Link do video nao listado: `INSERIR_LINK_DO_YOUTUBE_AQUI`
-
-## Resumo esperado dos resultados
-
-Os modelos tradicionais oferecem varias linhas de base para comparar fronteiras lineares, nao lineares, baseadas em vizinhanca, arvores e probabilidades. As variacoes LIF capturam dinamicas temporais por meio de taxas e padroes de disparo, testando normalizacao pelo treino, atributos de disparo mais ricos, multiplas constantes de tempo e leitura nao linear.
-
-
-## Histórico de Lançamentos
-
-### 1.0.0 09/05/2026
-- Implementação de análise de séries temporais de sinais vitais cardíacos.
-- Comparação entre classificadores tradicionais com atributos estatísticos e abordagem neuromórfica (rede baseada em neurônios LIF).
-- Classificação de estados: normal, taquicardia e irregular.
-- Geração de métricas, matriz de confusão e gráficos no notebook Jupyter.
-- Relatório comparativo dos modelos e roteiro para apresentação em vídeo.
+Projeto acadêmico - Análise de Séries Temporais com IA
 
 ## Licença
 
-<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
-<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms">
-  <a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por
-  <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">FIAP</a>
-  está licenciado sobre
-  <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.
-</p>
+MIT
